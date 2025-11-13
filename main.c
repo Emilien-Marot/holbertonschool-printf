@@ -42,5 +42,11 @@ int main(void)
     printf("Unknown:[%r]\n");
     _printf("Complete the sentence: You %s nothing, Jon Snow.\n", (char *)0);
     printf("Complete the sentence: You %s nothing, Jon Snow.\n", (char *)0);
+    printf("%");
+    printf("%");
+    _printf("%!\n");
+    printf("%!\n");
+    _printf("%K\n");
+    printf("%K\n");
     return (0);
 }

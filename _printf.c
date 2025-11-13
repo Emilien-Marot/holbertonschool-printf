@@ -5,7 +5,7 @@
 /**
  * _print_s - prints a string
  *
- * @s: string to be displayed
+ * @str: string to be displayed
  *
  * Return: size of the string (NULL byte excluded)
  */
@@ -13,7 +13,7 @@ int _print_s(char *str)
 {
 	int i, len = 0;
 	char *s;
-	
+
 	if (str != NULL)
 		s = str;
 	else
@@ -61,6 +61,12 @@ int _printf(const char *format, ...)
 			else if (format[i] == 's')
 			{
 				str_len += _print_s(va_arg(args, char*));
+			}
+			else
+			{
+				_putchar('%');
+				_putchar(format[i]);
+				str_len += 2;
 			}
 		}
 		else
