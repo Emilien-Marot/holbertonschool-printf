@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdarg.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 /**
  * _print_s - prints a string
@@ -68,6 +69,8 @@ int _printf(const char *format, ...)
 				_putchar(format[i]);
 				str_len += 2;
 			}
+			else
+				exit (1);
 		}
 		else
 		{
