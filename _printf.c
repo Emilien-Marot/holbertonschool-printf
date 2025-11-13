@@ -1,7 +1,7 @@
 #include "main.h"
 #include <stdarg.h>
 
-int _print_s(char *s)
+int _print_s(const char *s)
 {
 	int i, len = 0;
 
@@ -32,7 +32,7 @@ int _printf(const char *format, ...)
 			}
 			else if(format[i] == 'c')
 			{
-				_putchar(va_arg(args, char));
+				_putchar(va_arg(args, int));
 				str_len++;
 			}
 			else if(format[i] == 's')
