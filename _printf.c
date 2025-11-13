@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
+#include <stddef.h>
 
 /**
  * _print_s - prints a string
@@ -8,10 +9,15 @@
  *
  * Return: size of the string (NULL byte excluded)
  */
-int _print_s(const char *s)
+int _print_s(char *str)
 {
 	int i, len = 0;
-
+	char *s;
+	
+	if (str != NULL)
+		s = str;
+	else
+		s = "(null)";
 	for (i = 0; s[i] != '\0'; i++)
 	{
 		_putchar(s[i]);
@@ -54,7 +60,7 @@ int _printf(const char *format, ...)
 			}
 			else if (format[i] == 's')
 			{
-				str_len += _print_s(va_arg(args, const char*));
+				str_len += _print_s(va_arg(args, char*));
 			}
 		}
 		else
