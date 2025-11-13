@@ -27,8 +27,6 @@ int _print_s(char *str)
 	return (len);
 }
 
-int _print
-
 /**
  * _printf - prints a string
  *
