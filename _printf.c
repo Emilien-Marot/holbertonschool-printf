@@ -26,7 +26,8 @@ int _print_s(const char *s)
  * @format: string to be printed
  * @...: data to insert in format in place of the format modifier
  *
- * Description: function to print a string, inserting data in place of the format modifier
+ * Description: function to print a string,
+ * inserting data in place of the format modifier
  * Return: length of the final string
  */
 int _printf(const char *format, ...)
