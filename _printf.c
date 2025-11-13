@@ -27,6 +27,8 @@ int _print_s(char *str)
 	return (len);
 }
 
+int _print
+
 /**
  * _printf - prints a string
  *
@@ -60,9 +62,7 @@ int _printf(const char *format, ...)
 				str_len++;
 			}
 			else if (format[i] == 's')
-			{
 				str_len += _print_s(va_arg(args, char*));
-			}
 			else if (format[i] != '\0')
 			{
 				_putchar('%');
@@ -70,7 +70,7 @@ int _printf(const char *format, ...)
 				str_len += 2;
 			}
 			else
-				exit (1);
+				exit(1);
 		}
 		else
 		{
