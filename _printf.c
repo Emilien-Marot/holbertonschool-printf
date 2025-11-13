@@ -1,41 +1,57 @@
 #include "main.h"
 #include <stdarg.h>
 
+/**
+ * _print_s - prints a string
+ *
+ * @s: string to be displayed
+ *
+ * Return: size of the string (NULL byte excluded)
+ */
 int _print_s(const char *s)
 {
 	int i, len = 0;
 
-	for(i = 0; s[i] != '\0'; i++)
+	for (i = 0; s[i] != '\0'; i++)
 	{
 		_putchar(s[i]);
 		len++;
 	}
-	return(len);
+	return (len);
 }
 
+/**
+ * _printf - prints a string
+ *
+ * @format: string to be printed
+ * @...: data to insert in format in place of the format modifier
+ *
+ * Description: function to print a string, inserting data in place of the format modifier
+ * Return: length of the final string
+ */
 int _printf(const char *format, ...)
 {
 	va_list args;
 	int i, str_len;
 
 	va_start(args, format);
-	
-	for(i = 0; format[i] != '\0'; i++)
+
+	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
 		{
 			i++;
-			if(format[i] == '%')
+			if (format[i] == '%')
 			{
 				_putchar('%');
 				str_len++;
 			}
-			else if(format[i] == 'c')
+			else if (format[i] == 'c')
 			{
 				_putchar(va_arg(args, int));
 				str_len++;
 			}
-			else if(format[i] == 's')
+			else if (format[i] == 's')
 			{
 				str_len += _print_s(va_arg(args, const char*));
 			}
@@ -47,5 +63,5 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(args);
-	return(str_len);
+	return (str_len);
 }
