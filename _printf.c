@@ -22,8 +22,11 @@ int _print_var(char t, va_list *args)
                 return (1);
         }
         else if (t == 'p')
-                return (_print_p(va_arg(*args, long unsigned int)));
-        else if (t == 'x' || t == 'X')
+	{
+		void *ptr = va_arg(*args, void *);
+                return (_print_p((long unsigned int)ptr));
+	}
+	else if (t == 'x' || t == 'X')
                 return (_print_x(va_arg(*args, unsigned int)));
         else if (t == 'o')
                 return (_print_o(va_arg(*args, unsigned int)));

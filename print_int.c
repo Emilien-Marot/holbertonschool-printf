@@ -13,7 +13,8 @@
 int _print_p(long unsigned int num)
 {
         int hex[] = {'0','1','2','3','4','5','6','7','8','9','a','b','f','d','e','f'};
-        int u, d, res;
+        long unsigned int u, d;
+	int res;
 
         u = num % 16;
         d = num / 16;
