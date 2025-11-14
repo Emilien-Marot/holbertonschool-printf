@@ -14,11 +14,23 @@
  */
 int _print_var(char t, va_list *args)
 {
-        if (t == '%')
+        if (t == '\0')
+                exit(1);
+        else if (t == '%')
         {
                 _putchar('%');
                 return (1);
         }
+        else if (t == 'p')
+                return (_print_p(va_arg(*args, long unsigned int)));
+        else if (t == 'x' || t == 'X')
+                return (_print_x(va_arg(*args, unsigned int)));
+        else if (t == 'o')
+                return (_print_o(va_arg(*args, unsigned int)));
+        else if (t == 'u')
+                return (_print_u(va_arg(*args, unsigned int)));
+        else if (t == 'd' || t == 'i')
+                return (_print_i(va_arg(*args, int)));
         else if (t == 'c')
         {
                 _putchar(va_arg(*args, int));
@@ -27,8 +39,8 @@ int _print_var(char t, va_list *args)
         else if (t == 's')
                 return (_print_s(va_arg(*args, char*)));
         else if (t == 'n')
-		return (0);
-	else
+                return (0);
+        else
         {
                 _putchar('%');
                 _putchar(t);
@@ -46,7 +58,7 @@ int _print_var(char t, va_list *args)
  * inserting data in place of the format modifier
  * Return: length of the final string
  */
- int _printf(const char *format, ...)
+int _printf(const char *format, ...)
 {
         va_list args;
         int i, str_len;

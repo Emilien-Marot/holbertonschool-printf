@@ -1,3 +1,8 @@
+#include "main.h"
+#include <stdarg.h>
+#include <stddef.h>
+#include <stdlib.h>
+
 /**
  * _print_s - prints a string
  *
