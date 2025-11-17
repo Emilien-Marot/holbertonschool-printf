@@ -12,17 +12,17 @@
  */
 int _print_s(char *str)
 {
-        int i, len = 0;
-        char *s;
+	int i, len = 0;
+	char *s;
 
-        if (str != NULL)
-                s = str;
-        else
-                s = "(null)";
-        for (i = 0; s[i] != '\0'; i++)
-        {
-                _putchar(s[i]);
-                len++;
-        }
-        return (len);
+	if (str != NULL)
+		s = str;
+	else
+		s = "(null)";
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		_putchar(s[i]);
+		len++;
+	}
+	return (len);
 }
