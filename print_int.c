@@ -111,7 +111,7 @@ int _print_u(unsigned int num)
  */
 int _print_i(int num)
 {
-	int u, d, res;
+	int u, d, res = 0;
 
 	u = num % 10;
 	d = num / 10;
@@ -120,11 +120,12 @@ int _print_i(int num)
 		_putchar('-');
 		d = -1 * d;
 		u = -1 * u;
+		res = 1;
 	}
 	if (d >= 1)
-		res = _print_i(d) + 1;
+		res += _print_i(d) + 1;
 	else
-		res = 1;
+		res += 1;
 	_putchar('0' + u);
 	return (res);
 }
