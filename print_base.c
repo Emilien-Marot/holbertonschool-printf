@@ -38,6 +38,7 @@ int _print_p(unsigned long int num)
  * _print_x - prints an integer as an hexadecimal
  *
  * @num: integer to be printed
+ * @t: character for the format to define the case (lower or upper)
  *
  * Return: number of hex digits in the number
  */
