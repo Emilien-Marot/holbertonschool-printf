@@ -58,5 +58,9 @@ int main(void)
     len2 = printf("Unknown:[%r]\n");
     _printf("Len:[%d]\n", len);
     printf("Len:[%d]\n", len2);
+    len = _printf("%b\n", 98);
+    len2 = printf("%b\n", 98);
+    _printf("Len:[%d]\n", len);
+    printf("Len:[%d]\n", len2);
     return (0);
 }

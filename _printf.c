@@ -31,6 +31,8 @@ int _print_var(char t, va_list *args)
 	}
 	else if (t == 'x' || t == 'X')
 		return (_print_x(va_arg(*args, unsigned int)));
+	else if (t == 'b')
+                return (_print_b(va_arg(*args, unsigned int)));
 	else if (t == 'o')
 		return (_print_o(va_arg(*args, unsigned int)));
 	else if (t == 'u')

@@ -9,5 +9,6 @@ int _print_p(long unsigned int num);
 int _print_x(unsigned int num);
 int _print_o(unsigned int num);
 int _print_u(unsigned int num);
+int _print_b(unsigned int num);
 
 #endif
