@@ -30,7 +30,7 @@ int _print_var(char t, va_list *args)
 		return (_print_p((unsigned long int)ptr));
 	}
 	else if (t == 'x' || t == 'X')
-		return (_print_x(va_arg(*args, unsigned int)));
+		return (_print_x(va_arg(*args, unsigned int), t));
 	else if (t == 'b')
 		return (_print_b(va_arg(*args, unsigned int)));
 	else if (t == 'o')

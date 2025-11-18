@@ -41,8 +41,9 @@ int _print_p(unsigned long int num)
  *
  * Return: number of hex digits in the number
  */
-int _print_x(unsigned int num)
+int _print_x(unsigned int num, char t)
 {
+	char x;
 	int hex[] = {
 		'0', '1', '2', '3',
 		'4', '5', '6', '7',
@@ -53,10 +54,13 @@ int _print_x(unsigned int num)
 	u = num % 16;
 	d = num / 16;
 	if (d >= 1)
-		res = _print_x(d) + 1;
+		res = _print_x(d, t) + 1;
 	else
 		res = 1;
-	_putchar(hex[u]);
+	x = hex[u];
+	if (x >= 'a' && x <= 'f' && t == 'X')
+		x = x + 'A' - 'a';
+	_putchar(x);
 	return (res);
 }
 
