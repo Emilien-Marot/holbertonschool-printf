@@ -90,14 +90,14 @@ int _print_o(unsigned int num)
  */
 int _print_b(unsigned int num)
 {
-        int u, d, res;
+	int u, d, res;
 
-        u = num % 2;
-        d = num / 2;
-        if (d >= 1)
-                res = _print_b(d) + 1;
-        else
-                res = 1;
-        _putchar('0' + u);
-        return (res);
+	u = num % 2;
+	d = num / 2;
+	if (d >= 1)
+		res = _print_b(d) + 1;
+	else
+		res = 1;
+	_putchar('0' + u);
+	return (res);
 }
