@@ -66,7 +66,8 @@ int _print_var(char t, va_list *args)
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i, str_len = 0;
+	int i, len_bf, str_len = 0;
+	char *bf = malloc(1025);
 
 	va_start(args, format);
 
