@@ -14,13 +14,13 @@
  *
  * Return: size of the string printed
  */
-int _print_var(char t, va_list *args)
+int _print_var(char t, va_list *args, char *buf, int *len_buf)
 {
 	if (t == '\0')
 		exit(1);
 	else if (t == '%')
 	{
-		_putchar('%');
+		add_buf('%', buf, len_buf);
 		return (1);
 	}
 	else if (t == 'p')
@@ -30,26 +30,26 @@ int _print_var(char t, va_list *args)
 		return (_print_p((unsigned long int)ptr));
 	}
 	else if (t == 'x' || t == 'X')
-		return (_print_x(va_arg(*args, unsigned int), t));
+		return (_print_x(va_arg(*args, unsigned int), t, buf, len_buf));
 	else if (t == 'b')
-		return (_print_b(va_arg(*args, unsigned int)));
+		return (_print_b(va_arg(*args, unsigned int), buf, len_buf));
 	else if (t == 'o')
-		return (_print_o(va_arg(*args, unsigned int)));
+		return (_print_o(va_arg(*args, unsigned int), buf, len_buf));
 	else if (t == 'u')
-		return (_print_u(va_arg(*args, unsigned int)));
+		return (_print_u(va_arg(*args, unsigned int), buf, len_buf));
 	else if (t == 'd' || t == 'i')
-		return (_print_i(va_arg(*args, int)));
+		return (_print_i(va_arg(*args, int), buf, len_buf));
 	else if (t == 'c')
 	{
-		_putchar(va_arg(*args, int));
+		add_buf(va_arg(*args, int), buf, len_buf);
 		return (1);
 	}
 	else if (t == 's')
-		return (_print_s(va_arg(*args, char*)));
+		return (_print_s(va_arg(*args, char*), buf, len_buf));
 	else if (t == 'n')
 		return (0);
-	_putchar('%');
-	_putchar(t);
+	add_buf('%', buf, len_buf);
+	add_buf(t, buf, len_buf);
 	return (2);
 }
 
@@ -65,28 +65,30 @@ int _print_var(char t, va_list *args)
  */
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int i, len_bf, str_len = 0;
-	char *bf = malloc(1025);
+        va_list args;
+        int i, len_buf = 0, str_len = 0;
+        char *buf[1024];
+		*buf = '\0';
 
-	va_start(args, format);
+        va_start(args, format);
 
-	for (i = 0; format[i] != '\0'; i++)
-	{
-		if (format[i] == '%')
-		{
-			i++;
-			if (format[i] == '\0')
-				exit(1);
-			else
-				str_len += _print_var(format[i], &args);
-		}
-		else
-		{
-			_putchar(format[i]);
-			str_len++;
-		}
-	}
-	va_end(args);
-	return (str_len);
+        for (i = 0; format[i] != '\0'; i++)
+        {
+                if (format[i] == '%')
+                {
+                        i++;
+                        if (format[i] == '\0')
+                                exit(1);
+                        else
+                                str_len += _print_var(format[i], &args, buf, &len_buf);
+                }
+                else
+                {
+                        add_buf(format[i], buf, &len_buf);
+                        str_len++;
+                }
+        }
+        print_buf(buf, &len_buf);
+        va_end(args);
+        return (str_len);
 }

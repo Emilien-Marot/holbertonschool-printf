@@ -10,7 +10,7 @@
  *
  * Return: number of hex digits in the pointer's address
  */
-int _print_p(unsigned long int num)
+int _print_p(unsigned long int num, char *buf, int *len_buf)
 {
 	int hex[] = {
 		'0', '1', '2', '3',
@@ -23,14 +23,14 @@ int _print_p(unsigned long int num)
 	u = num % 16;
 	d = num / 16;
 	if (d >= 1)
-		res = _print_p(d) + 1;
+		res = _print_p(d, buf, len_buf) + 1;
 	else
 	{
-		_putchar('0');
-		_putchar('x');
+		add_buf('0', buf, len_buf);
+		add_buf('x', buf, len_buf);
 		res = 3;
 	}
-	_putchar(hex[u]);
+	add_buf(hex[u], buf, len_buf);
 	return (res);
 }
 
@@ -42,7 +42,7 @@ int _print_p(unsigned long int num)
  *
  * Return: number of hex digits in the number
  */
-int _print_x(unsigned int num, char t)
+int _print_x(unsigned int num, char t, char *buf, int *len_buf)
 {
 	char x;
 	int hex[] = {
@@ -55,13 +55,13 @@ int _print_x(unsigned int num, char t)
 	u = num % 16;
 	d = num / 16;
 	if (d >= 1)
-		res = _print_x(d, t) + 1;
+		res = _print_x(d, t, buf, len_buf) + 1;
 	else
 		res = 1;
 	x = hex[u];
 	if (x >= 'a' && x <= 'f' && t == 'X')
 		x = x + 'A' - 'a';
-	_putchar(x);
+	add_buf(x, buf, len_buf);
 	return (res);
 }
 
@@ -72,17 +72,17 @@ int _print_x(unsigned int num, char t)
  *
  * Return: number of octal digits in the number
  */
-int _print_o(unsigned int num)
+int _print_o(unsigned int num, char *buf, int *len_buf)
 {
 	int u, d, res;
 
 	u = num % 8;
 	d = num / 8;
 	if (d >= 1)
-		res = _print_o(d) + 1;
+		res = _print_o(d, buf, len_buf) + 1;
 	else
 		res = 1;
-	_putchar('0' + u);
+	add_buf(('0' + u), buf, len_buf);
 	return (res);
 }
 
@@ -93,16 +93,16 @@ int _print_o(unsigned int num)
  *
  * Return: number of bits in the number
  */
-int _print_b(unsigned int num)
+int _print_b(unsigned int num, char *buf, int *len_buf)
 {
 	int u, d, res;
 
 	u = num % 2;
 	d = num / 2;
 	if (d >= 1)
-		res = _print_b(d) + 1;
+		res = _print_b(d, buf, len_buf) + 1;
 	else
 		res = 1;
-	_putchar('0' + u);
+	add_buf(('0' + u), buf, len_buf);
 	return (res);
 }

@@ -10,7 +10,7 @@
  *
  * Return: size of the string (NULL byte excluded)
  */
-int _print_s(char *str)
+int _print_s(char *str, char *buf, int *len_buf)
 {
 	int i, len = 0;
 	char *s;
@@ -21,7 +21,7 @@ int _print_s(char *str)
 		s = "(null)";
 	for (i = 0; s[i] != '\0'; i++)
 	{
-		_putchar(s[i]);
+		add_buf(s[i], buf, len_buf);
 		len++;
 	}
 	return (len);

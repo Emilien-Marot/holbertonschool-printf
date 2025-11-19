@@ -1,10 +1,23 @@
 #include <stdio.h>
+#include <cstdlib>
+#include <unistd.h>
+
+void test(char *s, int *i)
+{
+	*i = *i + 1;
+	*(s + 1) = 'x';
+}
 
 int main(void)
 {
-	int a = 5;
-	int *p = &a;
-	printf("%d-%lx-%p\n%d-%lx-%p\n", a, &a, &a, *p, p, p);
-	printf("%o-%d-%x\n", 1615,1615,1615);
+	char s[1024];
+	s[0] = 'a';
+	*(s+1) = 'b';
+	s[2] = 'c';
+	s[3] = '\0';
+	int i = 20;
+	test(s, &i);
+	write(1,s,3);
+	printf("%s%d\n", s, i);
 	return(0);
 }

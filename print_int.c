@@ -10,17 +10,17 @@
  *
  * Return: number of digits in the number
  */
-int _print_u(unsigned int num)
+int _print_u(unsigned int num, char *buf, int *len_buf)
 {
 	int u, d, res;
 
 	u = num % 10;
 	d = num / 10;
 	if (d >= 1)
-		res = _print_i(d) + 1;
+		res = _print_i(d, buf, len_buf) + 1;
 	else
 		res = 1;
-	_putchar('0' + u);
+	add_buf(('0' + u), buf, len_buf);
 	return (res);
 }
 
@@ -31,7 +31,7 @@ int _print_u(unsigned int num)
  *
  * Return: number of digits in the number
  */
-int _print_i(int num)
+int _print_i(int num, char *buf, int *len_buf)
 {
 	int u, d, res = 0;
 
@@ -39,15 +39,15 @@ int _print_i(int num)
 	d = num / 10;
 	if (num < 0)
 	{
-		_putchar('-');
+		add_buf('-', buf, len_buf);
 		d = -1 * d;
 		u = -1 * u;
 		res = 1;
 	}
 	if (d >= 1)
-		res += _print_i(d) + 1;
+		res += _print_i(d, buf, len_buf) + 1;
 	else
 		res += 1;
-	_putchar('0' + u);
+	add_buf(('0' + u), buf, len_buf);
 	return (res);
 }
