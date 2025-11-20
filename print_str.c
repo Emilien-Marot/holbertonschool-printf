@@ -41,6 +41,11 @@ int _print_s(char *str, char *buf, int *len_buf)
  */
 int _print_s2(char *str, char *buf, int *len_buf)
 {
+	int hex[] = {
+                '0', '1', '2', '3',
+                '4', '5', '6', '7',
+                '8', '9', 'A', 'B',
+                'C', 'D', 'E', 'F'};
 	int i, len = 0;
 	char *s;
 
@@ -59,9 +64,8 @@ int _print_s2(char *str, char *buf, int *len_buf)
 		{
 			add_buf('\\', buf, len_buf);
 			add_buf('x', buf, len_buf);
-			if (s[i] < 16)
-				add_buf('0', buf, len_buf);
-			_print_base((int)s[i], 'x', buf, len_buf);
+			add_buf(hex[s[i] / 16], buf, len_buf);
+			add_buf(hex[s[i] % 16], buf, len_buf);
 			len += 4;
 		}
 	}
