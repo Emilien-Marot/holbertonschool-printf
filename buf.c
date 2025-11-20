@@ -13,10 +13,14 @@
  */
 int print_buf(char *buf, int *len_buf)
 {
+	int ret;
+
 	if (*len_buf == 0)
 		return (0);
-	return (write(1, buf, *len_buf));
-	*len_buf = 0;
+	ret = write(1, buf, *len_buf);
+	if (ret > 0)
+		*len_buf = 0;
+	return (ret);
 }
 
 /**

@@ -13,6 +13,12 @@ int main(void)
     int len2;
     unsigned int ui;
     void *addr;
+    int i;
+    char str[1024];
+
+    for (i = 0; i < 1023; i++)
+	    str[i] = 'a';
+    str[1023] = '\0';
 
     len = _printf("Let's try to printf a simple sentence.\n");
     len2 = printf("Let's try to printf a simple sentence.\n");
@@ -64,6 +70,10 @@ int main(void)
     printf("Len:[%d]\n", len2);
     len = _printf("%x%X\n", -1024, -1024);
     len2 = printf("%x%X\n", -1024, -1024);
+    _printf("Len:[%d]\n", len);
+    printf("Len:[%d]\n", len2);
+    len = _printf("%s\n", str);
+    len2 = printf("%s\n", str);
     _printf("Len:[%d]\n", len);
     printf("Len:[%d]\n", len2);
 
