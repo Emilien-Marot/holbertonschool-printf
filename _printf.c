@@ -86,5 +86,6 @@ int _printf(const char *format, ...)
 	}
 	print_buf(buf, &len_buf);
 	va_end(args);
+	free(buf);
 	return (str_len);
 }
