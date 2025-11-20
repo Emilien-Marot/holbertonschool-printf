@@ -9,8 +9,8 @@
  *
  * @t: defines the type of value to print
  * @args: pointer to the list of value to print
- * @buf: 
- * 
+ * @buf: pointer of the buffer
+ * @len_buf: current length of the buffer
  *
  * Description: function to print the variable
  * and return the size of the string to print
@@ -65,8 +65,8 @@ int _printf(const char *format, ...)
 	va_list args;
 	int i, len_buf = 0, str_len = 0;
 	char *buf = malloc(1024 * sizeof(char));
-	buf[0] = '\0';
 
+	buf[0] = '\0';
 	va_start(args, format);
 	for (i = 0; format[i] != '\0'; i++)
 	{

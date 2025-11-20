@@ -7,6 +7,8 @@
  * _print_i - prints an integer
  *
  * @num: integer to be printed
+ * @buf: pointer of the buffer
+ * @len_buf: current length of the buffer
  *
  * Return: number of digits in the number
  */

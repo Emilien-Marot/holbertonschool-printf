@@ -7,6 +7,8 @@
  * _print_p - prints the address of a pointer
  *
  * @num: address of the pointer
+ * @buf: pointer of the buffer
+ * @len_buf: current length of the buffer
  *
  * Return: number of hex digits in the pointer's address
  */
@@ -35,12 +37,14 @@ int _print_p(unsigned long int num, char *buf, int *len_buf)
 }
 
 /**
- * _print_x - prints an integer as an hexadecimal
+ * _print_base - prints an unsigned integer in the requested base
  *
  * @num: integer to be printed
- * @t: character for the format to define the case (lower or upper)
+ * @t: character to define the base and format of the number
+ * @buf: pointer of the buffer
+ * @len_buf: current length of the buffer
  *
- * Return: number of hex digits in the number
+ * Return: number of digits in the number in the requested base
  */
 int _print_base(unsigned int num, char t, char *buf, int *len_buf)
 {
@@ -59,7 +63,7 @@ int _print_base(unsigned int num, char t, char *buf, int *len_buf)
 	else if (t == 'o')
 		base = 8;
 	else if (t == 'b')
-        	base = 2;
+		base = 2;
 	u = num % base;
 	d = num / base;
 	if (d >= 1)

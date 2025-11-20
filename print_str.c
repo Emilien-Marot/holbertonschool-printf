@@ -7,6 +7,8 @@
  * _print_s - prints a string
  *
  * @str: string to be displayed
+ * @buf: pointer of the buffer
+ * @len_buf: current length of the buffer
  *
  * Return: size of the string (NULL byte excluded)
  */
