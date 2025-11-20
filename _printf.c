@@ -30,6 +30,8 @@ int _print_var(char t, va_list *args, char *buf, int *len_buf)
 	{
 		void *ptr = va_arg(*args, void *);
 
+		if (ptr == NULL)
+			return (_print_s("(nil)", buf, len_buf));
 		return (_print_p((unsigned long int)ptr, buf, len_buf));
 	}
 	else if (t == 's')
