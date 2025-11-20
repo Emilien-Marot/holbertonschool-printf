@@ -9,6 +9,8 @@
  *
  * @t: defines the type of value to print
  * @args: pointer to the list of value to print
+ * @buf: 
+ * 
  *
  * Description: function to print the variable
  * and return the size of the string to print
@@ -21,36 +23,30 @@ int _print_var(char t, va_list *args, char *buf, int *len_buf)
 		exit(1);
 	else if (t == '%')
 	{
-		add_buf('%', &buf[0], len_buf);
+		add_buf('%', buf, len_buf);
 		return (1);
 	}
 	else if (t == 'p')
 	{
 		void *ptr = va_arg(*args, void *);
 
-		return (_print_p((unsigned long int)ptr, &buf[0], len_buf));
-	}
-	else if (t == 'x' || t == 'X')
-		return (_print_x(va_arg(*args, unsigned int), t, &buf[0], len_buf));
-	else if (t == 'b')
-		return (_print_b(va_arg(*args, unsigned int), &buf[0], len_buf));
-	else if (t == 'o')
-		return (_print_o(va_arg(*args, unsigned int), &buf[0], len_buf));
-	else if (t == 'u')
-		return (_print_u(va_arg(*args, unsigned int), &buf[0], len_buf));
-	else if (t == 'd' || t == 'i')
-		return (_print_i(va_arg(*args, int), &buf[0], len_buf));
-	else if (t == 'c')
-	{
-		add_buf(va_arg(*args, int), &buf[0], len_buf);
-		return (1);
+		return (_print_p((unsigned long int)ptr, buf, len_buf));
 	}
 	else if (t == 's')
-		return (_print_s(va_arg(*args, char*), &buf[0], len_buf));
+		return (_print_s(va_arg(*args, char*), buf, len_buf));
 	else if (t == 'n')
 		return (0);
-	add_buf('%', &buf[0], len_buf);
-	add_buf(t, &buf[0], len_buf);
+	else if (t == 'd' || t == 'i')
+		return (_print_i(va_arg(*args, int), buf, len_buf));
+	else if (t == 'c')
+	{
+		add_buf(va_arg(*args, int), buf, len_buf);
+		return (1);
+	}
+	else if (t == 'x' || t == 'X' || t == 'b' || t == 'o' || t == 'u')
+		return (_print_base(va_arg(*args, unsigned int), t, buf, len_buf));
+	add_buf('%', buf, len_buf);
+	add_buf(t, buf, len_buf);
 	return (2);
 }
 
@@ -68,7 +64,7 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int i, len_buf = 0, str_len = 0;
-	char buf[1024];
+	char *buf = malloc(1024 * sizeof(char));
 	buf[0] = '\0';
 
 	va_start(args, format);

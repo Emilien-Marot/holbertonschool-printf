@@ -4,27 +4,6 @@
 #include <stdlib.h>
 
 /**
- * _print_u - prints an unsigned integer
- *
- * @num: integer to be printed
- *
- * Return: number of digits in the number
- */
-int _print_u(unsigned int num, char *buf, int *len_buf)
-{
-	int u, d, res;
-
-	u = num % 10;
-	d = num / 10;
-	if (d >= 1)
-		res = _print_i(d, buf, len_buf) + 1;
-	else
-		res = 1;
-	add_buf(('0' + u), buf, len_buf);
-	return (res);
-}
-
-/**
  * _print_i - prints an integer
  *
  * @num: integer to be printed
