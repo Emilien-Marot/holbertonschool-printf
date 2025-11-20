@@ -11,16 +11,16 @@ int main(void)
 {
     int len;
     int len2;
-    unsigned int ui;
+    /*unsigned int ui;
     void *addr;
     int i;
     char str[1024];
 
     for (i = 0; i < 1023; i++)
 	    str[i] = 'a';
-    str[1023] = '\0';
+    str[1023] = '\0';*/
 
-    len = _printf("Let's try to printf a simple sentence.\n");
+    /*len = _printf("Let's try to printf a simple sentence.\n");
     len2 = printf("Let's try to printf a simple sentence.\n");
     ui = (unsigned int)INT_MAX + 1024;
     addr = (void *)0x7ffe637541f0;
@@ -75,7 +75,10 @@ int main(void)
     len = _printf("%s\n", str);
     len2 = printf("%s\n", str);
     _printf("Len:[%d]\n", len);
+    printf("Len:[%d]\n", len2);*/
+    len = _printf("%S\n", "Best\nSchool");
+    len2 = printf("%S\n", "Best\nSchool");
+    _printf("Len:[%d]\n", len);
     printf("Len:[%d]\n", len2);
-
     return (0);
 }

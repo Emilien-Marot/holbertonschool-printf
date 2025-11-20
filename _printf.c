@@ -43,6 +43,8 @@ int _print_var(char t, va_list *args, char *buf, int *len_buf)
 		add_buf(va_arg(*args, int), buf, len_buf);
 		return (1);
 	}
+	else if (t == 'S')
+		return (_print_s2(va_arg(*args, char*), buf, len_buf));
 	else if (t == 'x' || t == 'X' || t == 'b' || t == 'o' || t == 'u')
 		return (_print_base(va_arg(*args, unsigned int), t, buf, len_buf));
 	add_buf('%', buf, len_buf);
