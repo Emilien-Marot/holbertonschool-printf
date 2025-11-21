@@ -76,6 +76,8 @@ int _printf(const char *format, ...)
 	int i, len_buf = 0, str_len = 0;
 	char *buf = malloc(1024 * sizeof(char));
 
+	if (buf == NULL)
+		exit(-1);
 	buf[0] = '\0';
 	va_start(args, format);
 	for (i = 0; format[i] != '\0'; i++)
