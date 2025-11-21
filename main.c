@@ -88,5 +88,9 @@ int main(void)
     len2 = _printf("%s\n", "test reverse");
     _printf("Len:[%d]\n", len);
     printf("Len:[%d]\n", len2);
+    len = _printf("%R\n", "Why did the chicken cross the road?");
+    len2 = _printf("%s\n", "Jul qvq gur puvpxra pebff gur ebnq?");
+    _printf("Len:[%d]\n", len);
+    printf("Len:[%d]\n", len2);
     return (0);
 }

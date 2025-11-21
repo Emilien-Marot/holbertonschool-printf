@@ -37,6 +37,8 @@ int _print_var(char t, va_list *args, char *buf, int *len_buf)
 	}
 	else if (t == 's')
 		res = _print_s(va_arg(*args, char*), buf, len_buf);
+	else if (t == 'R')
+		res = _print_r2(va_arg(*args, char*), buf, len_buf);
 	else if (t == 'n')
 		res = 0;
 	else if (t == 'd' || t == 'i')

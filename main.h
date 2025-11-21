@@ -12,5 +12,6 @@ int _print_i(int num, char *buf, int *len_buf);
 int _print_s(char *str, char *buf, int *len_buf);
 int _print_s2(char *str, char *buf, int *len_buf);
 int _print_r(char *str, int i, char *buf, int *len_buf);
+int _print_r2(char *str, char *buf, int *len_buf);
 
 #endif

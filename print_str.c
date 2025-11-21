@@ -94,3 +94,31 @@ int _print_r(char *str, int i, char *buf, int *len_buf)
 	add_buf(str[i], buf, len_buf);
 	return (res);
 }
+
+/**
+ * _print_r2 - prints a string after a ROT13
+ *
+ * @str: string to be displayed
+ * @buf: pointer of the buffer
+ * @len_buf: current length of the buffer
+ *
+ * Return: size of the string (NULL byte excluded)
+ */
+int _print_r2(char *str, char *buf, int *len_buf)
+{
+	int i, len = 0;
+
+	if (str == NULL)
+		return (_print_s("(ahyy)", buf, len_buf));
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		if (str[i] >= 'a' && str[i] <= 'z')
+			add_buf('a' + ((str[i] + 13 - 'a') % 26), buf, len_buf);
+		else if (str[i] >= 'A' && str[i] <= 'Z')
+			add_buf('A' + ((str[i] + 13 - 'A') % 26), buf, len_buf);
+		else
+			add_buf(str[i], buf, len_buf);
+		len++;
+	}
+	return (len);
+}
