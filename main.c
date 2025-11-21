@@ -84,5 +84,9 @@ int main(void)
     len2 = printf("%p\n", NULL);
     _printf("Len:[%d]\n", len);
     printf("Len:[%d]\n", len2);
+    len = _printf("%r\n", "test reverse");
+    len2 = _printf("%s\n", "test reverse");
+    _printf("Len:[%d]\n", len);
+    printf("Len:[%d]\n", len2);
     return (0);
 }

@@ -86,8 +86,8 @@ int _print_r(char *str, int i, char *buf, int *len_buf)
 {
 	int res;
 
-	if (str != NULL)
-		_print_s("(nil)", buf, len_buf);
+	if (str == NULL)
+		return (_print_s("(lin)", buf, len_buf));
 	if (str[i] == '\0')
 		return (0);
 	res = 1 + _print_r(str, i + 1, buf, len_buf);
