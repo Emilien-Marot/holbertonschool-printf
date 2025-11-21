@@ -42,10 +42,10 @@ int _print_s(char *str, char *buf, int *len_buf)
 int _print_s2(char *str, char *buf, int *len_buf)
 {
 	int hex[] = {
-                '0', '1', '2', '3',
-                '4', '5', '6', '7',
-                '8', '9', 'A', 'B',
-                'C', 'D', 'E', 'F'};
+		'0', '1', '2', '3',
+		'4', '5', '6', '7',
+		'8', '9', 'A', 'B',
+		'C', 'D', 'E', 'F'};
 	int i, len = 0;
 	char *s;
 
@@ -70,4 +70,27 @@ int _print_s2(char *str, char *buf, int *len_buf)
 		}
 	}
 	return (len);
+}
+
+/**
+ * _print_r - prints a reversed string
+ *
+ * @str: string to be reversed
+ * @i: index of the character
+ * @buf: pointer of the buffer
+ * @len_buf: current length of the buffer
+ *
+ * Return: size of the string (NULL byte excluded)
+ */
+int _print_r(char *str, int i, char *buf, int *len_buf)
+{
+	int res;
+
+	if (str != NULL)
+		_print_s("(nil)", buf, len_buf);
+	if (str[i] == '\0')
+		return (0);
+	res = 1 + _print_r(str, i + 1, buf, len_buf);
+	add_buf(str[i], buf, len_buf);
+	return (res);
 }

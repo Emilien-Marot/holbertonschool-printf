@@ -19,39 +19,43 @@
  */
 int _print_var(char t, va_list *args, char *buf, int *len_buf)
 {
+	int res;
+
+	res = 1;
 	if (t == '\0')
 		exit(1);
 	else if (t == '%')
-	{
 		add_buf('%', buf, len_buf);
-		return (1);
-	}
 	else if (t == 'p')
 	{
 		void *ptr = va_arg(*args, void *);
 
 		if (ptr == NULL)
-			return (_print_s("(nil)", buf, len_buf));
-		return (_print_p((unsigned long int)ptr, buf, len_buf));
+			res = _print_s("(nil)", buf, len_buf);
+		else
+			res = _print_p((unsigned long int)ptr, buf, len_buf);
 	}
 	else if (t == 's')
-		return (_print_s(va_arg(*args, char*), buf, len_buf));
+		res = _print_s(va_arg(*args, char*), buf, len_buf);
 	else if (t == 'n')
-		return (0);
+		res = 0;
 	else if (t == 'd' || t == 'i')
-		return (_print_i(va_arg(*args, int), buf, len_buf));
+		res = _print_i(va_arg(*args, int), buf, len_buf);
 	else if (t == 'c')
-	{
 		add_buf(va_arg(*args, int), buf, len_buf);
-		return (1);
-	}
 	else if (t == 'S')
-		return (_print_s2(va_arg(*args, char*), buf, len_buf));
+		res = _print_s2(va_arg(*args, char*), buf, len_buf);
 	else if (t == 'x' || t == 'X' || t == 'b' || t == 'o' || t == 'u')
-		return (_print_base(va_arg(*args, unsigned int), t, buf, len_buf));
-	add_buf('%', buf, len_buf);
-	add_buf(t, buf, len_buf);
-	return (2);
+		res = _print_base(va_arg(*args, unsigned int), t, buf, len_buf);
+	else if (t == 'r')
+		res = _print_r(va_arg(*args, char*), 0, buf, len_buf);
+	else
+	{
+		add_buf('%', buf, len_buf);
+		add_buf(t, buf, len_buf);
+		res = 2;
+	}
+	return (res);
 }
 
 /**
