@@ -46,7 +46,7 @@ int _print_p(unsigned long int num, char *buf, int *len_buf)
  *
  * Return: number of digits in the number in the requested base
  */
-int _print_base(unsigned int num, char t, char *buf, int *len_buf)
+int _print_base(unsigned long int num, char t, char *buf, int *len_buf)
 {
 	char x;
 	int hex[] = {

@@ -12,7 +12,7 @@
  *
  * Return: number of digits in the number
  */
-int _print_i(int num, char *buf, int *len_buf)
+int _print_i(long int num, char *buf, int *len_buf)
 {
 	int u, d, res = 0;
 

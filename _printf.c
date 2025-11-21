@@ -17,9 +17,11 @@
  *
  * Return: size of the string printed
  */
-int _print_var(char t, va_list *args, char *buf, int *len_buf)
+int _print_var(char t, int m, va_list *args, char *buf, int *len_buf)
 {
 	int res;
+	long int i;
+	long unsigned int u;
 
 	res = 1;
 	if (t == '\0')
@@ -35,22 +37,32 @@ int _print_var(char t, va_list *args, char *buf, int *len_buf)
 		else
 			res = _print_p((unsigned long int)ptr, buf, len_buf);
 	}
-	else if (t == 's')
-		res = _print_s(va_arg(*args, char*), buf, len_buf);
-	else if (t == 'R')
-		res = _print_r2(va_arg(*args, char*), buf, len_buf);
+	else if (t == 's' || t == 'S' || t == 'R' || t == 'r')
+		res = print_str(t, va_arg(*args, char*), buf, len_buf);
 	else if (t == 'n')
 		res = 0;
 	else if (t == 'd' || t == 'i')
-		res = _print_i(va_arg(*args, int), buf, len_buf);
+	{
+		if (m == 0)
+			i = va_arg(*args, int);
+		else if (m < 0)
+			i = (short int)va_arg(*args, int);
+		else
+			i = va_arg(*args, long int);
+		res = _print_i((long int)i, buf, len_buf);
+	}
 	else if (t == 'c')
 		add_buf(va_arg(*args, int), buf, len_buf);
-	else if (t == 'S')
-		res = _print_s2(va_arg(*args, char*), buf, len_buf);
 	else if (t == 'x' || t == 'X' || t == 'b' || t == 'o' || t == 'u')
-		res = _print_base(va_arg(*args, unsigned int), t, buf, len_buf);
-	else if (t == 'r')
-		res = _print_r(va_arg(*args, char*), 0, buf, len_buf);
+	{
+		if (m == 0)
+			u = va_arg(*args, unsigned int);
+		else if (m < 0)
+			u = (unsigned short int)va_arg(*args, int);
+		else
+			u = va_arg(*args, unsigned long int);
+		res = _print_base((unsigned long int)u, t, buf, len_buf);
+	}
 	else
 	{
 		add_buf('%', buf, len_buf);
@@ -75,6 +87,7 @@ int _printf(const char *format, ...)
 	va_list args;
 	int i, len_buf = 0, str_len = 0;
 	char *buf = malloc(1024 * sizeof(char));
+	int m;
 
 	if (buf == NULL)
 		exit(-1);
@@ -85,10 +98,19 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
+			m = '\0';
 			if (format[i] == '\0')
 				exit(1);
-			else
-				str_len += _print_var(format[i], &args, buf, &len_buf);
+			
+			while (format[i] == 'l' || format[i] == 'h')
+			{
+				if(format[i] == 'l')
+					m += 1;
+				else
+					m -= 1;
+				i++;
+			}
+			str_len += _print_var(format[i], m, &args, buf, &len_buf);
 		}
 		else
 		{
