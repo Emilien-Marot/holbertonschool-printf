@@ -14,7 +14,7 @@
  */
 int _print_i(long int num, char *buf, int *len_buf)
 {
-	int u, d, res = 0;
+	long int u, d, res = 0;
 
 	u = num % 10;
 	d = num / 10;
