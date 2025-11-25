@@ -4,6 +4,8 @@
 
 int _print_var(char t, int m, va_list *args, char *buf, int *len_buf);
 int _printf(const char *format, ...);
+long int format_i(va_list *args, int m);
+unsigned long int format_u(va_list *args, int m);
 int print_str(char t, char *str, char *buf, int *len_buf);
 int print_char(char t, char c, char *buf, int *len_buf);
 int print_buf(char *buf, int *len_buf);

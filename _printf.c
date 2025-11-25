@@ -39,7 +39,7 @@ long int format_i(va_list *args, int m)
  *
  * Return: size of the string printed
  */
-long int format_u(va_list *args, int m)
+unsigned long int format_u(va_list *args, int m)
 {
 	unsigned long int u;
 
@@ -106,7 +106,7 @@ int check_f(char f)
 {
 	if (f == 'i' || f == 'd' || f == 'u')
 		return (1);
-	if (f == 'x' || f == 'X' || f == 'b' || f != 'o')
+	if (f == 'x' || f == 'X' || f == 'b' || f == 'o')
 		return (1);
 	return (0);
 }
@@ -143,7 +143,6 @@ int _printf(const char *format, ...)
 			{
 				if (check_f(format[i + 1]) == 1)
 				{
-					printf("xx\n");
 					m = -1;
 					if (format[i] == 'l')
 						m = 1;

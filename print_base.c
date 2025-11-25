@@ -54,7 +54,7 @@ int _print_base(unsigned long int num, char t, char *buf, int *len_buf)
 		'4', '5', '6', '7',
 		'8', '9', 'a', 'b',
 		'c', 'd', 'e', 'f'};
-	int u, d, res, base;
+	unsigned long int u, d, res, base;
 
 	if (t == 'x' || t == 'X')
 		base = 16;

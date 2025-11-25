@@ -17,6 +17,7 @@
  */
 int print_char(char t, char c, char *buf, int *len_buf)
 {
+	printf("xx%c%cxx\n", t, c);
 	if (t == '\0')
 		exit(1);
 	else if (t == 'c')
