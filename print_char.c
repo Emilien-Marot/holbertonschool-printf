@@ -2,13 +2,14 @@
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
- * print_char - call the function to print either a
- * character or a special format specifier
+ * print_char - call the function to print either
+ * a character or a special format specifier
  *
  * @t: format specifier
- * @c: character to display with format c (otherwise null byte)
+ * @c: character to be displayed (or NULL-byte)
  * @buf: pointer of the buffer
  * @len_buf: current length of the buffer
  *
@@ -32,9 +33,10 @@ int print_char(char t, char c, char *buf, int *len_buf)
 	}
 	else
 	{
-		print_char(t, c, buf, len_buf);
 		add_buf('%', buf, len_buf);
 		add_buf(t, buf, len_buf);
 		return (2);
 	}
 }
+
+
