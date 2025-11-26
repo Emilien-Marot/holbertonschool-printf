@@ -17,7 +17,6 @@
  */
 int print_char(char t, char c, char *buf, int *len_buf)
 {
-	printf("xx%c%cxx\n", t, c);
 	if (t == '\0')
 		exit(1);
 	else if (t == 'c')
@@ -27,7 +26,7 @@ int print_char(char t, char c, char *buf, int *len_buf)
 	}
 	else if (t == 'n')
 		return (0);
-	else if (t == '%')
+	else if (t == '%' || t == 'l' || t == 'h')
 	{
 		add_buf('%', buf, len_buf);
 		return (1);
@@ -35,7 +34,7 @@ int print_char(char t, char c, char *buf, int *len_buf)
 	else
 	{
 		add_buf('%', buf, len_buf);
-		add_buf(t, buf, len_buf);
+		add_buf(t, buf, len_buf + 1);
 		return (2);
 	}
 }
