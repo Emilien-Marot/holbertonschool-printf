@@ -1,0 +1,156 @@
+.TH _printf 3 2025-12-01
+.SH NAME
+_printf \- formatted output conversion
+.SH SYNOPSIS
+.PP
+.BI "int _printf(const char *" format ", ...);"
+.fi
+.PP
+.RS -4
+.SH DESCRIPTION
+The functions in the
+.BR _printf ()
+family produce output according to a
+.I format
+as described below.
+The functions
+.BR _printf ()
+write output to
+.IR stdout ,
+the standard output stream.
+.PP
+.PP
+.SS Format of the format string
+The format string is a character string, beginning and ending
+in its initial shift state, if any.
+The format string is composed of zero or more directives: ordinary
+characters (not
+.BR % ),
+which are copied unchanged to the output stream;
+and conversion specifications, each of which results in fetching zero or
+more subsequent arguments.
+Each conversion specification is introduced by
+the character
+.BR % ,
+and ends with a
+.IR "conversion specifier" .
+In between there may be an optional
+.IR "length modifier" .
+.PP
+For some numeric conversions a radix character ("decimal point").
+.PP
+.SS Length modifier
+Here, "integer conversion" stands for
+.BR d ,
+.BR i ,
+.BR b ,
+.BR o ,
+.BR u ,
+.BR x ,
+or
+.B X
+conversion.
+.TP
+.B h
+A following integer conversion corresponds to a
+.I short
+or
+.I unsigned short
+argument.
+.TP
+.B l
+A following integer conversion corresponds to a
+.I long
+or
+.I unsigned long
+argument.
+.TP
+.SS Conversion specifiers
+A character that specifies the type of conversion to be applied.
+The conversion specifiers and their meanings are:
+.TP
+.BR d ", " i
+The
+.I int
+argument is converted to signed decimal notation.
+.TP
+.BR b ", " o ", " u ", " x ", " X
+The
+.I "unsigned int"
+argument is converted to unsigned binary
+.RB ( b ),
+unsigned octal
+.RB ( o ),
+unsigned decimal
+.RB ( u ),
+or unsigned hexadecimal
+.RB ( x
+and
+.BR X )
+notation.
+The letters
+.B abcdef
+are used for
+.B x
+conversions; the letters
+.B ABCDEF
+are used for
+.B X
+conversions.
+.TP
+.B c
+The
+.I int
+argument is converted to an
+.IR "unsigned char" ,
+and the resulting character is written.
+.TP
+.B s
+The
+.I "const char\ *"
+argument is expected to be a pointer to an array of character type (pointer
+to a string).
+Characters from the array are written up to (but not
+including) a terminating null byte ('\\0').
+.TP
+.B S
+The
+.I "const char\ *"
+argument is expected to be a pointer to an array of character type (pointer
+to a string).
+Characters from the array are written up to (but not
+including) a terminating null byte ('\\0') with non printable characters
+replaced \x followed by their ASCII value in hexadecimal.
+.TP
+.B r
+The
+.I "const char\ *"
+argument is expected to be a pointer to an array of character type (pointer
+to a string).
+Characters from the array are written up to (but not
+including) a terminating null byte ('\\0') in reverse order.
+.TP
+.B R
+The
+.I "const char\ *"
+argument is expected to be a pointer to an array of character type (pointer
+to a string).
+Characters from the array are written up to (but not
+including) a terminating null byte ('\\0') with letters modified using ROT13.
+.TP
+.B p
+The
+.I "void\ *"
+pointer argument is printed in hexadecimal.
+.TP
+.B %
+A \(aq%\(aq is written.
+No argument is converted.
+The complete conversion
+specification is \(aq%%\(aq.
+.SH RETURN VALUE
+Upon successful return, this functions returns the number of characters
+printed (excluding the null byte used to end output to strings).
+.SH SEE ALSO
+.BR printf (3)
+
